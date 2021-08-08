@@ -1,0 +1,23 @@
+server:
+  port: 8202
+
+spring:
+  application:
+    name: FEBS-Server-Test
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 20
+  client:
+    registry-fetch-interval-seconds: 3
+    register-with-eureka: true
+    instance-info-replication-interval-seconds: 30
+    fetch-registry: true
+    service-url:
+      defaultZone: http://febs:febs@localhost:8081/register/eureka/
+
+security:
+  oauth2:
+    resource:
+      id: ${spring.application.name}
+      user-info-uri: http://localhost:8301/auth/user

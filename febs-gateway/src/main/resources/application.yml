@@ -1,0 +1,44 @@
+server:
+  port: 8301
+
+spring:
+  application:
+    name: FEBS-Gateway
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 20
+  client:
+    registry-fetch-interval-seconds: 3
+    register-with-eureka: true
+    instance-info-replication-interval-seconds: 30
+    fetch-registry: true
+    service-url:
+      defaultZone: http://febs:febs@localhost:8081/register/eureka/
+
+zuul:
+  routes:
+    auth:
+      path: /auth/**
+      serviceId: FEBS-Auth
+      sensitiveHeaders: "*"
+    system:
+      path: /system/**
+      serviceId: FEBS-Server-System
+      sensitiveHeaders: "*"
+    test:
+      path: /test/**
+      serviceId: FEBS-Server-Test
+      sensitiveHeaders: "*"
+  retryable: true
+  ignored-services: "*"
+  ribbon:
+    eager-load:
+      enabled: true
+
+ribbon:
+  ReadTimeout: 3000
+
+
+
+
