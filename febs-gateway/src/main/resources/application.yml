@@ -36,6 +36,11 @@ zuul:
     eager-load:
       enabled: true
 
+  SendErrorFilter:
+    error:
+      disable: true
+
+
 ribbon:
   ReadTimeout: 3000
 
