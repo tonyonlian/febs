@@ -21,5 +21,10 @@ public class TestController {
         return principal;
     }
 
+    @GetMapping("hello")
+    public String hello(String name) {
+        return "hello" + name;
+    }
+
 
 }
