@@ -1,6 +1,6 @@
 package cn.tongyl.febs.server.test.service;
 
-import cn.tongyl.febs.common.FebsServerConstant;
+import cn.tongyl.febs.common.entity.FebsServerConstant;
 import cn.tongyl.febs.server.test.service.fallback.HelloServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

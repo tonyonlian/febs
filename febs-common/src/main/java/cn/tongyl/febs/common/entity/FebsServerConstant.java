@@ -1,4 +1,4 @@
-package cn.tongyl.febs.common;
+package cn.tongyl.febs.common.entity;
 
 /**
  * @author create by Tunyl on 2021/8/21
