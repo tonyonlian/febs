@@ -18,5 +18,17 @@ public class FebsConstant {
      * Zuul请求头Token的值
      */
     public static final String ZUUL_TOKEN_VALUE = "febs:zuul:123456";
+    /**
+     * gis 类型
+     */
+    public static final String GIF = "gif";
+    /**
+     * png 类型
+     */
+    public static final String PNG = "png";
+    /**
+     * 验证码 key 前缀
+     */
+    public static final String CODE_PREFIX = "febs.captcha";
 }
 

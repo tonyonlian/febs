@@ -2,6 +2,8 @@ package cn.tongyl.febs.fauth.configure;
 
 import cn.tongyl.febs.common.handler.FebsAccessDeniedHandler;
 import cn.tongyl.febs.common.handler.FebsAuthExceptionEntryPoint;
+import cn.tongyl.febs.fauth.properties.FebsAuthProperties;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,6 +22,8 @@ public class FebsResourceServerConfigure extends ResourceServerConfigurerAdapter
     private FebsAuthExceptionEntryPoint exceptionEntryPoint;
     @Autowired
     private FebsAccessDeniedHandler accessDeniedHandler;
+    @Autowired
+    private FebsAuthProperties febsAuthProperties;
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -29,10 +33,12 @@ public class FebsResourceServerConfigure extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        String[] anonUrl = StringUtils.splitByWholeSeparatorPreserveAllTokens(febsAuthProperties.getAnonUrl(),",");
         http.csrf().disable()
                 .requestMatchers().antMatchers("/**")
                 .and()
                 .authorizeRequests()
+                .antMatchers(anonUrl).permitAll()
                 .antMatchers("/**")
                 .authenticated();
     }

@@ -1,9 +1,9 @@
 package cn.tongyl.febs.fauth.configure;
 
+import cn.tongyl.febs.fauth.filter.ValidateCodeFilter;
 import cn.tongyl.febs.fauth.service.FebsUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author create by Tunyl on 2021/7/31
@@ -22,6 +23,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class FebsSecurityConfigure extends WebSecurityConfigurerAdapter {
     @Autowired
     private FebsUserDetailService userDetailService;
+    @Autowired
+    private ValidateCodeFilter validateCodeFilter;
 
 
     @Bean
@@ -38,7 +41,11 @@ public class FebsSecurityConfigure extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers()
+        /**
+         * 接下来我们需要将ValidateCodeFilter过滤器添加到Spring Security过滤器链中，并且位于UsernamePasswordAuthenticationFilter过滤器前（即校验用户名密码时先校验验证码）。
+         */
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+                .requestMatchers()
                 .antMatchers("/oauth/**")
                 .and()
                 .authorizeRequests()

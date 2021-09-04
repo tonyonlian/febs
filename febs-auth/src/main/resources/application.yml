@@ -10,7 +10,7 @@ spring:
     host: 47.114.176.208
     port: 9301
     password: light-dev
-    jedis:
+    lettuce:
       pool:
         min-idle: 7
         max-idle: 500
