@@ -16,7 +16,7 @@ public class TestController {
         return "febs-sever-system";
     }
 
-    @GetMapping("user")
+    @GetMapping("currentUser")
     public Principal currentUser(Principal principal) {
         return principal;
     }
