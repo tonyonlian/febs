@@ -17,4 +17,8 @@ public class FebsSwaggerProperties {
     private String email;
     private String license;
     private String licenseUrl;
+    // 认证安全使用属性
+    private String grantUrl;
+    private String name;
+    private String scope;
 }
