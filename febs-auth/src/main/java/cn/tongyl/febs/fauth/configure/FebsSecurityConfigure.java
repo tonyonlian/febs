@@ -47,10 +47,11 @@ public class FebsSecurityConfigure extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 .requestMatchers()
                 .antMatchers("/oauth/**")
+                .antMatchers("/actuator/**")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/**")
-                .authenticated()
+                .antMatchers("/oauth/**").authenticated()
+                .antMatchers("/actuator/**").permitAll()
                 .and()
                 .csrf().disable();
 

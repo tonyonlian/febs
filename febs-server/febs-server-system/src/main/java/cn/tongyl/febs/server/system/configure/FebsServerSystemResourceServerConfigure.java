@@ -40,6 +40,7 @@ public class FebsServerSystemResourceServerConfigure extends ResourceServerConfi
                 .and()
                 .authorizeRequests()
                 .antMatchers(anonUrls).permitAll()
+                .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/**").authenticated();
     }
 }

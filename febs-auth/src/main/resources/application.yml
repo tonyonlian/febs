@@ -18,6 +18,14 @@ spring:
         max-wait: 10000
     timeout: 5000
 
+  boot:
+    admin:
+      client:
+        url: http://localhost:8401
+        username: febs
+        password: 123456
+
+
   datasource:
     dynamic:
       hikari:
@@ -56,3 +64,20 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://febs:febs@localhost:8081/register/eureka/
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: "@project.description@"
+    version: "@project.version@"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+
