@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Vector;
 
 /**
  * @author create by Tunyl on 2021/8/8
@@ -36,5 +39,12 @@ public class TestController {
     @GetMapping("user")
     public Principal currentUser(Principal principal) {
         return principal;
+    }
+
+    private void test() {
+        HashMap<String, String> m = new HashMap<>();
+
+        HashSet<Object> se = new HashSet<>();
+        Vector<String> v = new Vector<>();
     }
 }
